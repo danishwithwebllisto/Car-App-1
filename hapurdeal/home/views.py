@@ -268,7 +268,7 @@ def adspage(request,slug):
 	else:
 		
 		lenuser ,lenpost = base()
-		addpost = Seller.objects.filter(slug=slug).first()
+		addpost = Seller.objects.filter(sno=slug).first()
 
 		context = {'web':web,'con':con,'lenus':lenuser,'lenpo':lenpost,'post':addpost}
 		return render(request,'home/ad-details-right.html',context)
