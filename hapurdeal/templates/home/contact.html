@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block customcss %}
+<link rel="stylesheet" href="{% static 'css/custom/contact.css' %}">
+    
+{% endblock customcss %}
+
+{% block body %}
+    
+
+<section class="single-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="single-content">
+                    <h2>
+                        contact us
+                    </h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">
+                                Home
+                            </a>
+                        </li>
+                        <li aria-current="page" class="breadcrumb-item active">
+                            contact
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include "alert.html" %}
+
+<section class="contact-part">
+    <div class="container">
+        <div class="row">
+        	{% for post in con %}
+        		
+        	
+
+            <div class="col-lg-4">
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt">
+                    </i>
+                    <h3>
+                        Find us
+                    </h3>
+                    <p>
+                        {{post.address1 | safe}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt">
+                    </i>
+                    <h3>
+                        Make a Call
+                    </h3>
+                    <p>
+                       {{post.number | safe}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-info">
+                    <i class="fas fa-envelope">
+                    </i>
+                    <h3>
+                        Send Mail
+                    </h3>
+                    <p>
+                        {{post.email | safe}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="contact-map">
+                    {{post.googlemap | safe}} 
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-lg-6">
+                <form action="/contact" method="post" class="contact-form">
+                	{% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" name="name" placeholder="Your Name" type="text" required="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" name="number" placeholder="Number" type="number" required="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" name="email" placeholder="Your Email" type="email" required="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <textarea col="0" class="form-control" name="message" placeholder="Your Message" required="">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-btn">
+                            	 <input style="background-color: blue !important; color:white;" class="form-control" value="Submit" type="submit"/>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}

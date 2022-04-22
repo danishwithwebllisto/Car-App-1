@@ -1,0 +1,194 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block customcss %}
+    <link rel="stylesheet" href="{% static 'css/custom/my-ads.css' %}">
+{% endblock customcss %}
+
+
+{% block body %}
+
+{% include "dashsidebar.html" %}
+
+        <section class="myads-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                
+                    </div>
+                </div>
+                <div class="row">
+
+
+                	{% for post in userpost %}
+                		
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                        <div class="product-card">
+                            <div class="product-media">
+                                <div class="product-img">
+                                    <img width="252" height="252" alt="{{post.seller_name | safe}}" src="{{post.image.url}}"/>
+                                </div>
+                                <div class="cross-vertical-badge product-badge">
+                                    <i class="fas fa-fire">
+                                    </i>
+                                    <span>
+                                        {{post.seller_name | safe}}
+                                    </span>
+                                </div>
+                                
+
+                            </div>
+                            <div class="product-content">
+                                <ol class="breadcrumb product-category">
+                                    <li>
+                                        <i class="fas fa-tags">
+                                        </i>
+                                    </li>
+
+                                    <li class="breadcrumb-item">
+                                        <a href="{{post.sno | safe}}">
+                                            {{post.model | safe}}
+                                        </a>
+                                    </li>
+
+                                    <li class="breadcrumb-item">
+                                        <a href="{{post.sno | safe}}">
+                                            {{post.make_com | safe}}
+                                        </a>
+                                    </li>
+                                    
+                                </ol>
+                                <h5 class="product-title">
+                                    <a href="{{post.sno | safe}}">
+                                        {{post.user.get_full_name | safe | truncatechars:30}}
+                                    </a>
+                                </h5>
+                                <div class="product-meta">
+                                    
+                                    <span>
+                                        <i class="fas fa-clock">
+                                        </i>
+                                        {{post.year }}
+                                    </span>
+
+
+                                </div>
+                                <div class="product-info">
+
+                                    <div class="product-btn">
+                                        ${{post.asking_price}}
+                                    </div>
+                                    
+                                    {% if post.is_sold == "Buy" %}
+
+                                    <div class="product-btn">
+                                        <a href="{{post.sno | safe}}" >{{post.is_sold}}
+                                        </a>
+                                    </div>
+
+                                    {% elif post.is_sold == "Sold" and user.is_authenticated %}
+
+                                    <div class="product-btn">
+                                        <a href="/?sale={{post.sno | safe}}"> Make a Sale
+                                        </a>
+                                    </div>
+                                    
+                                    
+
+                                    {% else %}
+                                        
+                                        <div class="product-btn">
+                                        <a href="#" >{{post.is_sold}}
+                                        </a>
+                                    </div>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+                
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer-pagection">
+                        
+                            <p class="page-info">
+                                Showing Results
+                            </p>
+
+                            <ul class="pagination">
+                            	{% if userpost.has_other_pages %}
+                                {% if userpost.has_previous %}
+                                
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ userpost.previous_page_number }}">
+                                        <i class="fas fa-long-arrow-alt-left">
+                                        </i>
+                                    </a>
+                                </li>
+                                
+
+                                {% else %}
+
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-long-arrow-alt-left">
+                                        </i>
+                                    </a>
+                                </li>
+                                {% endif %}
+
+                                {% for i in userpost.paginator.page_range %}
+                                	{% if userpost.number == i %}
+	                                <li class="page-item active	">
+	                                    <a class="page-link" href="#">
+	                                        {{ i }}
+	                                    </a>
+	                                </li>
+
+	                                {% else %}
+
+		                                <li class="page-item">
+		                                    <a class="page-link" href="?page={{ i }}">
+		                                        {{ i }}
+		                                    </a>
+		                                </li>
+
+		                            {% endif %}
+    							{% endfor %}
+                             	{% if userpost.has_next %}
+                
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ userpost.next_page_number }}">
+                                        <i class="fas fa-long-arrow-alt-right">
+                                        </i>
+                                    </a>
+                                </li>
+
+                                {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-long-arrow-alt-right">
+                                        </i>
+                                    </a>
+                                </li>
+                                {% endif %}
+                               {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
+        {% endblock body %}

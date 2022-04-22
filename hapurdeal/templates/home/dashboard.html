@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block body %}
+
+
+
+	{% include "dashsidebar.html" %}
+        <section class="dashboard-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="account-card alert fade show">
+                            <div class="account-title">
+                                <h3>
+                                    About 
+                                </h3>
+                                <button data-dismiss="alert">
+                                    close
+                                </button>
+                            </div>
+                            <div class="dash-content">
+                                 {% if profile %}
+                                
+                                    {% for post in profile %}
+                                    <p>
+                                       {{post.about | safe}}
+                                    </p>
+                                    {% endfor %}
+
+                                    {% else %}
+                                        <p>Please Update Your Profile Setting.</p>
+
+                                    {% endif %}
+                            </div>
+                        </div>
+                        
+                    </div>
+     
+                </div>
+            </div>
+        </section>
+
+        {% endblock body %}

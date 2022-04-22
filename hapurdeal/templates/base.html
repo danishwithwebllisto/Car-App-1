@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+    <head>
+
+        {% load static %}
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+        {% for post in web %}
+            <meta content="{{post.title | safe}}" name="type">
+            <meta content="{{post.title | safe}}" name="title">
+            <meta content="{{post.keyword | safe}}" name="keywords">
+            <meta content="{{post.discription | safe}}" name="description">
+            <title>{{post.title | safe}}</title>
+            <link href="{{post.favilogo.url}}" rel="icon">
+        {% endfor %}
+
+        
+        <link href="{% static 'fonts/flaticon/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'fonts/font-awesome/fontawesome.css' %}" rel="stylesheet">
+        <link href="{% static 'css/vendor/slick.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/vendor/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/custom/main.css' %}" rel="stylesheet">
+        <link href="{% static 'css/custom/index.css' %}" rel="stylesheet"/>
+        {% block customcss %}
+            
+        {% endblock customcss %}
+        
+
+
+    </head>
+        <body>
+            <header class="header-part">
+                <div class="container">
+                    <div class="header-content">
+                        <div class="header-left">
+                            <button class="header-widget sidebar-btn" type="button">
+                                <i class="fas fa-align-left">
+                                </i>
+                            </button>
+
+                            {% for post in web %}
+                                
+                            <a class="header-logo" href="/">
+                                <img alt="logo" src="{{post.logo.url}}"/>
+                            </a>
+
+                            {% endfor %}
+
+                            {% if user.is_authenticated %}
+
+                            <a class="header-widget header-user" href="/dashboard">
+                                <img alt="user" src="{% static 'images/user.png' %}">
+                                    <span>
+                                        Dashboard
+                                    </span>
+                                </img>
+                            </a>
+
+                            {% else %}
+                            
+                            <a class="header-widget header-user" href="/login">
+                                <img alt="user" src="{% static 'images/user.png' %}">
+                                    <span>
+                                        Login
+                                    </span>
+                                </img>
+                            </a>
+                            {% endif %}
+
+
+                            <button class="header-widget search-btn" type="button">
+                                <i class="fas fa-search">
+                                </i>
+                            </button>
+                        </div>
+
+                        <form class="header-form">
+                            <div class="header-search">
+                                <button title="Search Submit " type="submit">
+                                    <i class="fas fa-home">
+                                        </i>
+                                    Best Selling Website
+                                </button>
+
+
+                                <!-- <input placeholder="Search, Whatever you needs..." type="text">
+                                    <button class="option-btn" title="Search Option" type="button">
+                                        <i class="fas fa-search">
+                                        </i>
+                                    </button>
+                                </input> -->
+
+
+                            </div>
+                        </form>
+
+
+                        <div class="header-right">
+                            <ul class="header-list">
+
+                        
+
+                            </ul>
+                            <a class="btn btn-inline post-btn" href="/add-post">
+                                <i class="fas fa-plus-circle">
+                                </i>
+                                <span>
+                                    post your ad
+                                </span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            {% include "sidebar.html" %}
+           
+
+            <nav class="mobile-nav">
+                <div class="container">
+                    <div class="mobile-group">
+                        <a class="mobile-widget" href="/">
+                            <i class="fas fa-home">
+                            </i>
+                            <span>
+                                home
+                            </span>
+                        </a>
+                        <a class="mobile-widget" href="user-form.html">
+                            <i class="fas fa-user">
+                            </i>
+                            <span>
+                                join me
+                            </span>
+                        </a>
+                        <a class="mobile-widget plus-btn" href="ad-post.html">
+                            <i class="fas fa-plus">
+                            </i>
+                            <span>
+                                Ad Post
+                            </span>
+                        </a>
+                        <a class="mobile-widget" href="notification.html">
+                            <i class="fas fa-bell">
+                            </i>
+                            <span>
+                                notify
+                            </span>
+                            <sup>
+                                0
+                            </sup>
+                        </a>
+                        <a class="mobile-widget" href="message.html">
+                            <i class="fas fa-envelope">
+                            </i>
+                            <span>
+                                message
+                            </span>
+                            <sup>
+                                0
+                            </sup>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+
+
+            {% block body %}
+                
+            {% endblock body %}
+
+
+
+
+        <footer class="footer-part">
+            <div class="container">
+                <div class="row newsletter">
+                    <div class="col-lg-6">
+                        <div class="news-content">
+                            <h2>
+                                Subscribe for Latest Offers
+                            </h2>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <form class="news-form">
+                            <input placeholder="Enter Your Email Address" type="text">
+                                <button class="btn btn-inline">
+                                    <i class="fas fa-envelope">
+                                    </i>
+                                    <span>
+                                        Subscribe
+                                    </span>
+                                </button>
+                            </input>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="footer-content">
+                            <h3>
+                                Contact Us
+                            </h3>
+
+
+                            {% for post in con %}
+                            <ul class="footer-address">
+                                <li>
+                                    <i class="fas fa-map-marker-alt">
+                                    </i>
+                                    <p>
+                                        {{post.address1 | safe}}
+                                    
+                                    </p>
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope">
+                                    </i>
+                                    <p>
+                                        {{post.email | safe}}
+                                        
+                                    </p>
+                                </li>
+                                <li>
+                                    <i class="fas fa-phone-alt">
+                                    </i>
+                                    <p>
+                                        {{post.number | safe}}
+                                    </p>
+                                </li>
+
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="footer-content">
+                            <h3>
+                                Quick Links
+                            </h3>
+                            <ul class="footer-widget">
+                                <li>
+                                    <a href="#">
+                                        Store Location
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Orders Tracking
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        My Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Size Guide
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Faq
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="footer-content">
+                            <h3>
+                                Information
+                            </h3>
+                            <ul class="footer-widget">
+                                <li>
+                                    <a href="#">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Delivery System
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Secure Payment
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Contact Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Sitemap
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="footer-info">
+
+                            {% for post in web %}
+                                
+                            
+                            <a href="#">
+                                <img alt="{{post.title}}" src="{{post.logo.url}}"/>
+                            </a>
+                            <ul class="footer-count">
+                                <li>
+                                    <h5>
+                                        {{lenus }}
+                                    </h5>
+                                    <p>
+                                        Registered Users
+                                    </p>
+                                </li>
+                                <li>
+                                    <h5>
+                                        {{ lenpo }}
+                                    </h5>
+                                    <p>
+                                        Community Ads
+                                    </p>
+                                </li>
+                            </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer-card-content">
+                            <div class="footer-payment">
+                                <a href="#">
+                                    <img alt="01" src="{% static 'images/pay-card/01.jpg' %}"/>
+                                </a>
+                                <a href="#">
+                                    <img alt="02" src="{% static 'images/pay-card/02.jpg' %}"/>
+                                </a>
+                                <a href="#">
+                                    <img alt="03" src="{% static 'images/pay-card/03.jpg' %}"/>
+                                </a>
+                                <a href="#">
+                                    <img alt="04" src="{% static 'images/pay-card/04.jpg' %}"/>
+                                </a>
+                            </div>
+                            <div class="footer-option">
+                                <button data-target="#language" data-toggle="modal" type="button">
+                                    <i class="fas fa-globe">
+                                    </i>
+                                    English
+                                </button>
+                                <button data-target="#currency" data-toggle="modal" type="button">
+                                    <i class="fas fa-dollar-sign">
+                                    </i>
+                                    USD
+                                </button>
+                            </div>
+                            <div class="footer-app">
+                                <a href="#">
+                                    <img alt="play-store" src="{% static 'images/play-store.png' %}"/>
+                                </a>
+                                <a href="#">
+                                    <img alt="app-store" src="{% static 'images/app-store.png' %}"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-end">
+                <div class="container">
+                    <div class="footer-end-content">
+                        <p>
+                            All Copyrights Reserved © 2022
+                            
+                        </p>
+                        <ul class="footer-social">
+
+                            {% for post in web %}
+                                
+                            
+                            <li>
+                                <a href="{{post.fb | safe}}">
+                                    <i class="fab fa-facebook-f">
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{post.twitter | safe}}">
+                                    <i class="fab fa-twitter">
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{post.linkedin | safe}}">
+                                    <i class="fab fa-linkedin-in">
+                                    </i>
+                                </a>
+                            </li>
+ 
+                            <li>
+                                <a href="{{post.youtube | safe }}">
+                                    <i class="fab fa-youtube">
+                                    </i>
+                                </a>
+                            </li>
+         
+                            <li>
+                                <a href="{{post.instagram | safe}}">
+                                    <i class="fab fa-instagram">
+                                    </i>
+                                </a>
+                            </li>
+                          
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+        <div class="modal fade" id="currency">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>
+                            Choose a Currency
+                        </h4>
+                        <button class="fas fa-times" data-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <button class="modal-link active">
+                            United States Doller (USD) - $
+                        </button>
+                        <button class="modal-link">
+                            Euro (EUR) - €
+                        </button>
+                        <button class="modal-link">
+                            British Pound (GBP) - £
+                        </button>
+                        <button class="modal-link">
+                            Australian Dollar (AUD) - A$
+                        </button>
+                        <button class="modal-link">
+                            Canadian Dollar (CAD) - C$
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="language">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>
+                            Choose a Language
+                        </h4>
+                        <button class="fas fa-times" data-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <button class="modal-link active">
+                            English
+                        </button>
+                        <button class="modal-link">
+                            bangali
+                        </button>
+                        <button class="modal-link">
+                            arabic
+                        </button>
+                        <button class="modal-link">
+                            germany
+                        </button>
+                        <button class="modal-link">
+                            spanish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}">
+        </script>
+        <script src="{% static 'js/vendor/popper.min.js' %}">
+        </script>
+        <script src="{% static 'js/vendor/bootstrap.min.js' %}">
+        </script>
+        <script src="{% static 'js/vendor/slick.min.js' %}">
+        </script>
+        <script src="{% static 'js/custom/slick.js' %}">
+        </script>
+        <script src="{% static 'js/custom/main.js' %}">
+        </script>
+    </body>
+    <!-- Mirrored from mironmahmud.com/Hapur Deal/assets/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Apr 2022 04:48:17 GMT -->
+</html>

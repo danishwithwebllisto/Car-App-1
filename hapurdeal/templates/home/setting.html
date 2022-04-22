@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block body %}
+
+
+{% include "dashsidebar.html" %}    
+
+
+
+        <div class="setting-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="account-card alert fade show">
+                            <div class="account-title">
+                                <h3>
+                                    Edit Profile
+                                </h3>
+                                <button data-dismiss="alert">
+                                    close
+                                </button>
+                            </div>
+                            <form action="/profile-setting" method="post" class="setting-form" enctype="multipart/form-data">
+                            	{% csrf_token %}
+                                <div class="row">
+
+								 {% if profile %}
+                                    
+                            	{% for post in profile %}                          
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Business Name
+                                            </label>
+                                            <input class="form-control" name="business" placeholder="{{post.business | safe}}" type="text" required="" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Area Locality
+                                            </label>
+                                            <input class="form-control" name="area" placeholder="{{post.area_locality | safe}}" type="text" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Village / Town
+                                            </label>
+                                            <input class="form-control" name="village" placeholder="{{post.village_town | safe}}" type="text" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                District
+                                            </label>
+                                            <input class="form-control" placeholder="{{post.district | safe}}" type="text" name="district" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Post Code
+                                            </label>
+                                            <input class="form-control" name="pincode" placeholder="{{post.pincode | safe}}" type="text" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                State
+                                            </label>
+                                            <input class="form-control" name="state" placeholder="{{post.state | safe}}" type="text" required="" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                About 
+                                            </label>
+                                            <textarea name="about" row="5" col="0" class="form-control">{{post.about | safe}}</textarea> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Profile Image
+                                            </label>
+                                            <input class="form-control" name="photo" type="file" required="" />
+                                        </div>
+                                    </div>
+
+                              
+                                    {% endfor %}
+
+                                    {% else %}
+
+                                     <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Business Name
+                                            </label>
+                                            <input class="form-control" name="business" placeholder="Enter Your Business Name" type="text" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Area Locality
+                                            </label>
+                                            <input class="form-control" name="area" placeholder="Enter Your Area Locality" type="text" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Village / Town
+                                            </label>
+                                            <input class="form-control" name="village" placeholder="Enter Your Village/Town" type="text" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                District
+                                            </label>
+                                            <input class="form-control" placeholder="Enter Your City/District" type="text" name="district" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Post Code
+                                            </label>
+                                            <input class="form-control" name="pincode" placeholder="142055" type="text" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                State
+                                            </label>
+                                            <input class="form-control" name="state" placeholder="Enter Your State" type="text" required="" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                About 
+                                            </label>
+                                            <textarea name="about" row="5" col="" class="form-control">
+                                            	
+                                            </textarea> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                Profile Image
+                                            </label>
+                                            <input class="form-control" name="photo" type="file" required="" />
+                                        </div>
+                                    </div>
+
+                                
+                                        
+
+                                    {% endif %}
+                                    <div class="col-lg-12">
+                                        <input type="submit" value="update profile" class="btn btn-inline" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+       {% endblock body %}

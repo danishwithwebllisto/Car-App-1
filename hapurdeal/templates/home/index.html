@@ -1,0 +1,153 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+    
+
+        <section class="banner-part">
+            <div class="container">
+            	{% for post in web %}
+            		
+                <div class="banner-content">
+                    <h1>
+                        {{post.heading | safe}}
+                    </h1>
+                    <p>
+                        {{post.subheading | safe}}
+                    </p>
+                    <a class="btn btn-outline" href="/ads-details">
+                        <i class="fas fa-eye">
+                        </i>
+                        <span>
+                            Show all ads
+                        </span>
+                    </a>
+                </div>
+            	{% endfor %}
+            </div>
+        </section>
+
+
+        <section class="section recomend-part m-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-center-heading">
+                            <h2>
+                                Our Recommend
+                                <span>
+                                    Ads
+                                </span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="recomend-slider slider-arrow">
+                    {% for post in allPost %}
+                           <div class="product-card">
+                            <div class="product-media">
+                                <div class="product-img">
+                                    <img width="252" height="252" alt="{{post.seller_name | safe}}" src="{{post.image.url}}"/>
+                                </div>
+                                <div class="cross-vertical-badge product-badge">
+                                    <i class="fas fa-fire">
+                                    </i>
+                                    <span>
+                                        {{post.seller_name | safe}}
+                                    </span>
+                                </div>
+
+
+                                
+                                
+                            </div>
+                            <div class="product-content">
+                                <ol class="breadcrumb product-category">
+                                    <li>
+                                        <i class="fas fa-tags">
+                                        </i>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="{{post.sno | safe}}">
+                                            {{post.model | safe}}
+                                        </a>
+                                    </li>
+
+                                    <li class="breadcrumb-item">
+                                        <a href="{{post.sno | safe}}">
+                                            {{post.make_com | safe}}
+                                        </a>
+                                    </li>
+                                    
+                                </ol>
+                                <h5 class="product-title">
+                                    <a href="{{post.sno | safe}}">
+                                        {{post.user.get_full_name | safe | truncatechars:30}}
+                                    </a>
+                                </h5>
+
+                                
+                                <div class="product-meta">
+                                    
+
+                                    <span>
+                                        <i class="fas fa-clock">
+                                        </i>
+                                        {{post.year }}
+                                    </span>
+                                    
+                                </div>
+                                <div class="product-info">
+                      
+                                    <div class="product-btn">
+                                        ${{post.asking_price}}
+                                    </div>
+                                    
+                                    {% if post.is_sold == "Buy" %}
+
+                                    <div class="product-btn">
+                                        <a href="{{post.sno | safe}}" >{{post.is_sold}}
+                                        </a>
+                                    </div>
+                                        
+                                    
+
+                                    {% else %}
+                                        
+                                        <div class="product-btn">
+                                        <a href="#" >{{post.is_sold}}
+                                        </a>
+                                    </div>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="center-50">
+                            <a class="btn btn-inline" href="/ads-details">
+                                <i class="fas fa-eye">
+                                </i>
+                                <span>
+                                    view all recommend
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        
+        {% endblock body %}

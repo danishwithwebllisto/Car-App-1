@@ -1,0 +1,140 @@
+{% load static %}
+
+<aside class="sidebar-part">
+    <div class="sidebar-body">
+        <div class="sidebar-header">
+
+        	{% for post in web %}
+        		
+            <a class="sidebar-logo" href="/">
+                <img alt="logo" src="{{post.logo.url}}"/>
+            </a>
+        	{% endfor %}
+
+            <button class="sidebar-cross">
+                <i class="fas fa-times">
+                </i>
+            </button>
+
+        </div>
+
+
+        <div class="sidebar-content">
+
+            <div class="sidebar-profile">
+
+   			{% if user.is_authenticated %}
+                
+                <h4>
+                    <a class="sidebar-name" href="/logout">
+                        Logout
+                    </a>
+                </h4>
+                <a class="btn btn-inline sidebar-post" href="/add-post">
+                    <i class="fas fa-plus-circle">
+                    </i>
+                    <span>
+                        post your ad
+                    </span>
+                </a>
+        	{% else %}
+
+        		<a class="btn btn-inline sidebar-post" href="/login">
+                    <i class="fas fa-plus-circle">
+                    </i>
+                    <span>
+                        Login
+                    </span>
+                </a>
+
+        	{% endif %}
+            
+            </div>
+
+
+            <div class="sidebar-menu">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a class="nav-link active" data-toggle="tab" href="#main-menu">
+                            Main Menu
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" data-toggle="tab" href="#author-menu">
+                            Author Menu
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-pane active" id="main-menu">
+                    <ul class="navbar-list">
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="/">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="navbar-item navbar-dropdown">
+                            <a class="navbar-link" href="/add-post">
+                                <span>
+                                    List a Car
+                                </span>
+                                
+                            </a>
+                        </li>
+
+                        <li class="navbar-item navbar-dropdown">
+                            <a class="navbar-link" href="/ads-details">
+                                <span>
+                                    Find Cars
+                                </span>
+                                
+                            </a>
+                        </li>
+                     
+                  
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="/contact">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="author-menu">
+                    <ul class="navbar-list">
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="/dashboard">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="/profile-setting">
+                                Profile
+                            </a>
+                        </li>
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="/add-post">
+                                List A Car
+                            </a>
+                        </li>
+                        <li class="navbar-item">
+                            <a class="navbar-link" href="/myads">
+                                My Ads
+                            </a>
+                        </li>
+                       
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <p>
+                    All Rights Reserved By 
+                    <a href="/">
+                        Hapur Deal
+                    </a>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+</aside>

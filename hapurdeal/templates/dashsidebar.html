@@ -1,0 +1,156 @@
+{% load static %}
+
+{% block customcss %}
+    <link rel="stylesheet" href="{% static 'css/custom/dashboard.css' %}">
+{% endblock customcss %}
+
+<section class="single-banner dashboard-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="single-content">
+                    <h2>
+                        Dashboard
+                    </h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/">
+                                Home
+                            </a>
+                        </li>
+                        <li aria-current="page" class="breadcrumb-item active">
+                            dashboard
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dash-header-part">
+    <div class="container">
+        <div class="dash-header-card">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="dash-header-left">
+                        {% if profile %}
+                                
+                                {% for post in profile %}
+                        <div class="dash-avatar">
+                            <a href="#">
+                                <img alt="{{post.user.get_full_name}}" src="{{post.profile_photo.url}}"/>
+                            </a>
+                        </div>
+                        <div class="dash-intro">
+                            <h4>
+                                <a href="#">
+                                    {{post.user.get_full_name | safe}}
+                                </a>
+                            </h4>
+                            <h5>
+                                {{post.business | safe}}
+                            </h5>
+                            <ul class="dash-meta">
+                                <li>
+                                    <i class="fas fa-phone-alt">
+                                    </i>
+                                    <span>
+                                        {{post.user.username}}
+                                    </span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope">
+                                    </i>
+                                    <span>
+                                        {{post.user.email}}
+                                    </span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-map-marker-alt">
+                                    </i>
+                                    <span>
+                                        {{post.district}}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endfor %}
+
+                                {% else %}
+
+                                {% for post in user_details %}
+                        <div class="dash-avatar">
+                            <a href="#">
+                                <img alt="{{post.user.get_full_name}}" src="{% static 'images/avatar/01.jpg' %}"/>
+                            </a>
+                        </div>
+                        <div class="dash-intro">
+                            <h4>
+                                <a href="#">
+                                    {{post.get_full_name | safe}}
+                                </a>
+                            </h4>
+                            <h5>
+                                {{post.username | safe}}
+                            </h5>
+                            <ul class="dash-meta">
+                                <li>
+                                    <i class="fas fa-envelope">
+                                    </i>
+                                    <span>
+                                        {{post.email}}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endfor %}
+                                {% endif %}
+                    </div>
+                </div>
+
+            </div>
+            
+                    {% include "alert.html" %}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="dash-menu-list">
+                        <ul>
+                            <li>
+                                <a class="{{status}}" href="/dashboard">
+                                    dashboard
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/add-post">
+                                    List a Car
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/myads">
+                                    My Ads
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class= ""href="/profile-setting">
+                                    settings
+                                </a>
+                            </li>
+                           
+                            <li>
+                                <a href="/logout">
+                                    logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

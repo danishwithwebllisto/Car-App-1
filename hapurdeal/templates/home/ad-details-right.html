@@ -1,0 +1,208 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block customcss %}
+    <link rel="stylesheet" href="{% static 'css/custom/ad-details.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+{% endblock customcss %}
+
+
+{% block body %}
+
+
+
+        <section class="single-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="single-content">
+                            <h2>
+                                {{post.seller_name | safe}}
+                            </h2>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/">
+                                        Post
+                                    </a>
+                                </li>
+                                <li aria-current="page" class="breadcrumb-item active">
+                                    {{post.seller_number | safe}}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="inner-section ad-details-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="common-card">
+                            <ol class="breadcrumb ad-details-breadcrumb">
+                                <li>
+                                    <span class="flat-badge sale">
+                                        {{post.model}}
+                                    </span>
+                                </li>
+                                
+                            </ol>
+           
+                            <h3 class="ad-details-title">
+                                {{post.make_com}}
+                            </h3>
+                  
+
+                            <div class="ad-details-slider-group">
+                                <div class="ad-details-slider slider-arrow">
+                                    <div>
+                                        <img width="670" height="476" alt="details" src="{{post.image.url}}"/>
+                                    </div>
+                                    <div>
+                                        <img width="670" height="476" alt="details" src="{{post.image.url}}"/>
+                                    </div>
+                                    <div>
+                                        <img width="670" height="476" alt="details" src="{{post.image.url}}"/>
+                                    </div>
+                                    <div>
+                                        <img width="670" height="476" alt="details" src="{{post.image.url}}"/>
+                                    </div>
+                                </div>
+                                <div class="cross-vertical-badge ad-details-badge">
+                                    <i class="fas fa-clipboard-check">
+                                    </i>
+                                    <span>
+                                        recommend
+                                    </span>
+                                </div>
+                            </div>
+                        
+                            
+                        </div>
+                       
+
+                        <div class="common-card" id="review">
+                            <div class="card-header">
+                                <h5 class="card-title">
+                                    Buy This Product 
+                                </h5>
+                            </div>
+                            <div class="ad-details-review">
+    
+                                <form action="/buy" method="post" class="review-form" >
+                                {% csrf_token %}
+                                    <div class="review-form-grid">
+                                        <div class="form-group">
+                                            <input name="name" class="form-control" placeholder="Name" type="text" required="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Mobile " name="mobile" type="number" required="" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input class="form-control" value={{post.sno}} name="sno" type="hidden" required="" />
+                                        </div>
+                                        
+                                    </div>
+                      
+                                        
+                                        <input class="btn btn-inline review-submit" type="submit" value="Order Now" class="btn btn-inline" />
+                                       
+                                 
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="common-card price">
+                            <h3>
+                                {{post.user.username | safe}}
+                            </h3>
+                             <a href="tel:91{{post.user.username | safe}}">
+                            <i class="fas fa-phone">
+                            </i>
+                            </a>
+                        </div>
+                        <button class="common-card number"type="button">
+                            <h3>
+                                {{post.user.username | safe}}
+                               
+                            </h3>
+                            <a href="https://api.whatsapp.com/send?phone=91{{post.user.username}}&text=I%20See%20Your%20Profile%20On%20Hapur%20Deal.">
+                            	<i class="fa fa-whatsapp">
+                            	</i>
+                            </a>
+                        </button>
+
+                        <div class="common-card">
+                            <div class="card-header">
+                                <h5 class="card-title">
+                                    author info
+                                </h5>
+                            </div>
+                            <div class="ad-details-author">
+                                
+                                <div class="author-meta">
+                                    <h4>
+                                        <a href="/">
+                                            {{post.user.get_full_name}}
+                                        </a>
+                                    </h4>
+                                    <h5>
+                                        Email: {{post.user.email | safe}}
+                                    </h5>
+                                    
+                                </div>
+                              
+                               
+                            </div>
+                        </div>
+                   
+                 
+                        <div class="common-card">
+                            <div class="card-header">
+                                <h5 class="card-title">
+                                    safety tips
+                                </h5>
+                            </div>
+                            <div class="ad-details-safety">
+                                <p>
+                                    Check the item before you buy
+                                </p>
+                                <p>
+                                    Pay only after collecting item
+                                </p>
+                                <p>
+                                    Beware of unrealistic offers
+                                </p>
+                                <p>
+                                    Meet seller at a safe location
+                                </p>
+                                <p>
+                                    Do not make an abrupt decision
+                                </p>
+                                <p>
+                                    Be honest with the ad you post
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+          
+      {% endblock body %}
